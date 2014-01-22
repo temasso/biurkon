@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="pl">
+
+<head>
+
+ {% block js %}
+     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+     <script type="text/JavaScript" src="{% static "bootstrap/js/bootstrap.js"  %}"></script>
+ {% endblock %}
+{% block extrajs %}{% endblock %}
+
+{% block style %}
+ <link rel="stylesheet" type="text/css" href="{% static "biurkon/css/base.css"  %}" media="screen" />
+ <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}" />
+ <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}" />
+{%  comment %} <link rel="stylesheet" type="text/css" href="{% static "bootstrap/fonts/glyphicons-halflings-regular.ttf" %}" /> {%  endcomment %}
+{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "registration/css/form.css"  %}" media="screen" />
+{% endblock %}
+
+<title>{% block title %}Biurkon -  system zarządzania konferencjami {% endblock %}</title>
+
+</head>
+
+<body>
+	
+{% block nav %}
+<div id="header">
+    		
+    		
+    	<h1 id="biurkon" class="text-info">Biurkon</h1>
+    	
+        <nav id="nawigacja">
+        	<ul id="menu">
+        	<li><a href="{% url 'konfs' %}">Konferencje</a></li>
+        	{% if user.is_authenticated %}
+        	
+        	<li><a href="{% url 'TwojeZgloszenia' %}">Twoje zgłoszenia</a></li>
+        {% comment %}	<li><a href="{% url 'dane' %}">Dane</a></li> {% endcomment %}
+        	{% endif %}
+        	</ul>
+        </nav>
+        
+        <div id="box_log">
+        	{% if user.is_authenticated %}
+        	<small>Witaj,  <strong> {{user.first_name}} {{user.last_name}}</strong>
+        	(<a href="{% url 'auth_logout' %}">Wyloguj</a> |
+        	<a href="{% url 'auth_password_change' %}">Zmień hasło</a>) </small>
+        	{% else %}
+       		 <small><a href="{% url 'auth_login' %}">Zaloguj lub zarejestruj się!</a></small>
+        	{% endif %}
+        </div>
+        
+</div>
+{% endblock %}
+ 
+<div id="tlo_content">
+{% block content %}
+
+{% endblock %}
+</div>    
+   
+   
+   
+
+{% block footer %}  
+<footer>Biurkon 2014</footer>
+ {% endblock %}
+</body>
+</html>

@@ -1,0 +1,81 @@
+{% extends "biurkon/main_base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{{ konferencja.tytul }}{%  endblock %}
+
+
+{% block content %}
+
+
+  <h1 class="text-info" style="margin-top:70px;">{{ konferencja.tytul }}</h1>
+
+       <div id="otaczajacay" style="border-top: 1px dotted grey;padding-top:10px;"></div>
+
+            <div id="detale" style="float:left;width:50%;">
+
+            	<p>
+            	<small>opis: </small>{{konferencja.opis}}
+            	</p>
+            	<p>
+            	<small>start: </small> {{konferencja.inauguracja}} {{ konferencja.inauguracja_godzina }}
+            	</p>
+                <p>
+                <small>finał: </small> {{ konferencja.final }}
+                </p>
+                 {% if konferencja.otwarte_zapisy %}
+
+            	<p>
+            	<small>zgłoszenia do: </small> <span class="text-danger">{{konferencja.data_zamkniecia_zgloszen}}</span>
+            	</p>
+                {% endif %}
+            </div>
+            {% if  konferencja.otwarte_zapisy %}
+            <div id="zgloszenie" style="float:right;width:49%;"></br>
+                    <a href="/konferencje/zgloszenie/{{ konferencja.id }}" class="btn btn-success btn-lg" role="button" style="margin-left:60px;margin-top:20px;">Wyślij zgłoszenie</a>
+            </div>
+            {% endif %}
+
+
+{% if sesje %}
+    </br>
+<table class="table table-striped table-bordered table-hover table-responsive" style="margin-top:50px;">
+
+ {% if  konferencja.otwarte_zapisy %}
+<caption class="text-left" style="margin-bottom:3px;"><strong>Planowany program </strong><i><small class="text-danger">  może ulec zmianie!</small></i></caption>
+
+  {% else %}
+     <caption class="text-left" style="margin-bottom:3px;"><strong>Program sesji</strong><i><small class="text-danger"></small></i></caption>
+ {% endif %}
+    <tr>
+<th>Sesja</th>
+<th>Data</th>
+<th>Miejsce</th>
+<th>Program</th>
+</tr>
+{% for sesja in sesje %}
+
+<tr>
+<td><i>{{ sesja.temat }}</i></td> <td>{{ sesja.start }}</td> <td><address>{{ sesja.lokalizacja }}</address></td> <td><a href='/konferencja/{{ konferencja.id}}/sesja/{{ sesja.id }}/'>Zobacz</a></td>
+</tr>
+
+
+
+
+{% endfor %}    
+</table>
+
+
+
+{% else %}
+<br>
+    <br>
+<p class="text-primary">Niestety brak sesji</p>
+
+{% endif %}
+     
+     
+     
+     
+{% endblock %}

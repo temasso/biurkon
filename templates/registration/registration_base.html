@@ -1,0 +1,23 @@
+{% extends "biurkon/main_base.html" %}
+{% load url from future %}
+{% load i18n %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block extrastyle %}
+  {% comment %} <link rel="stylesheet" type="text/css" href="{% static "registration/css/form.css"  %}" media="screen" />{% endcomment %}
+{% endblock %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block extrajs %}
+
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block extracss %}
+{{ form.media.css }}
+{% endblock %}

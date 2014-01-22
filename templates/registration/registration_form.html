@@ -1,0 +1,100 @@
+{% extends "registration/registration_base.html" %}
+
+
+{% load url from future %}
+{% load i18n %}
+
+{% load bootstrap3 %}
+{% block title %}Rejestracja{% endblock %}
+
+{% block extrajs %}
+    <script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+    <script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $(".number").blur(function(){
+
+                    var numer = $("#id_nr_telefonu").val();
+                    var regex = /^\d+$/;
+
+                    if(regex.test(numer) && numer.length >= 7 && numer.length <=14 ){
+                        $('.btn-primary').removeAttr('disabled', 'disabled');
+                    }else{
+                        $('.btn-primary').attr('disabled', 'disabled');
+                        $('#id_nr_telefonu').val('Tylko cyfry, 7 - 14 cyfr');
+                    }
+
+        }
+
+
+        )
+
+        $("#id_first_name").blur(function(){
+                    var imie = $("#id_first_name").val();
+
+                    imie = imie.substr(0,1).toUpperCase() + imie.substr(1).toLowerCase();
+                    $("#id_first_name").val(imie);
+                }
+        )
+
+        $("#id_last_name").blur(function(){
+                    var nazwisko = $("#id_last_name").val();
+
+                    nazwisko = nazwisko.substr(0,1).toUpperCase() + nazwisko.substr(1).toLowerCase();
+                    $("#id_last_name").val(nazwisko);
+                }
+        )
+
+
+    });
+
+
+
+
+    </script>
+{% endblock %}
+
+
+{% block extrastyle %}
+<style>
+   div:nth-of-type(4){
+	display:none;}
+#formularz{
+    width: 30%;
+    margin: 0 auto;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <form role="form" method="post" id="formularz">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
+    </form>
+
+{% endblock %}
+
+
+{% comment %}
+<div id="rejestracja">
+<form method="post" action=".">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {{ field }}
+    </div>
+    {% endfor %}
+    <input type="submit" value="Rejestruj" class="btn btn-primary" >
+</form>
+</div>
+
+
+
+{% endcomment %}

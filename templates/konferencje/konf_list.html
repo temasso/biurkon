@@ -1,0 +1,117 @@
+{% extends "biurkon/main_base.html" %}
+{% load static %}
+
+{% block extrajs %}
+     {% comment %}<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> {% endcomment %}
+{% endblock %}
+
+{% block extrastyle %}
+  {% comment %}  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+<br />
+<br />
+<style>
+.opiss{font-size:80%;}
+td{ min-width: 95px;}
+.img-thumbnail{min-width:830px;}
+.pierwszy{min-width:160px;
+background-color:rgb(252,252,252);
+color:#680000 ;}
+</style>
+        <div class="img-thumbnail">
+    	{% if konferencje %}
+
+        <table class="table table-striped table-bordered table-hover table-responsive">
+        <caption class="text-center" style="margin-bottom:3px;"><strong> Konferencje nadchodzące</strong><i><small class="text-success">   na te konferencje możesz wysłać swoje zgłoszenie</small></i></caption>
+
+        <tr>
+        <th class="pierwszyy">Tytuł</th>
+        <th>Opis</th>
+        <th>Inauguracja</th>
+        <th>Liczba sesji</th>
+        <th>Termin nadsyłania zgłoszeń</th>
+        <th>Strona</th>
+
+        </tr>
+
+        {% for konferencja in konferencje %}
+            {% if konferencja.otwarte_zapisy %}
+            <tr>
+                <td class="pierwszy">{{ konferencja.tytul }}</td>
+
+                <td class="opiss">{{konferencja.opis}}</td>
+
+            	<td>{{konferencja.inauguracja}}</td>
+
+            	<td>{{konferencja.ilosc_sesji}}</td>
+
+            	<td class="text-warning">{{konferencja.data_zamkniecia_zgloszen}}</td>
+
+                <td><form action="/konferencja/{{konferencja.id}}"><input type="submit" value="Przejdź" class="btn btn-info btn-block"></form></td>
+
+            </tr>
+            {% endif %}
+
+        {% endfor %}
+        </table>
+
+    </div>
+
+    <div class="img-thumbnail">
+
+        <table class="table table-striped table-bordered table-hover table-responsive" style="margin-top:65px;">
+        <caption class="text-center" style="margin-bottom:3px;"><strong> Konference ubiegłe</strong><i><small class="text-danger">   na te konferencje rekrutacja została już zakończona</small></i></caption>
+
+        <tr>
+        <th class="pierwszyy">Tytuł</th>
+        <th>Opis</th>
+        <th>Inauguracja</th>
+        <th>Liczba sesji</th>
+        <th>Strona</th>
+        </tr>
+
+        {% for konferencja in konferencje %}
+            {% if not konferencja.otwarte_zapisy %}
+
+                <tr>
+
+                <td class="pierwszy"><strong>{{ konferencja.tytul }}</strong></td>
+
+            	<td> {{konferencja.opis}}</td>
+
+
+            	<td>{{konferencja.inauguracja}}</td>
+
+
+            	<td>{{konferencja.ilosc_sesji}}</td>
+
+
+            	<td><form action="/konferencja/{{konferencja.id}}"><input type="submit" value="Przejdź" class="btn btn-info btn-block"></form></td>
+
+                </tr>
+
+
+            {% endif %}
+        {% endfor %}
+        </table>
+
+
+
+        {% else %}
+        	<p>Nie dodano żadnych konferencji</p>
+       {% endif %}
+
+    </div>
+    
+<script>
+	$("title").html("Lista konferencji");
+	
+	 $(function() {
+		$( "#accordion" ).accordion();
+	});
+	
+	
+</script>
+{% endblock %} 

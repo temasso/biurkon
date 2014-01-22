@@ -1,0 +1,13 @@
+{% extends "biurkon/main_base.html" %}
+
+
+{% block content %}
+    <div class="img-thumbnail text-center" style="margin-top:70px;">
+    <h3>{{ konferencja.tytul }}<small> .konferencja</small></h3>
+    <h2 class="text-danger">Niepowodzenie</h2>
+
+    {% if staff == 1 %}<p class="text-danger">Jako pracownik musisz mieć utworzone konto Prelegenta, aby wysyłać zgłoszenia</p>{% endif %}
+    <p class="text-info" >Okres rekrutacji na konferencję mógł już upłynąć lub już wysłałeś swoje zgłoszenie.</p>
+    <a href="/konferencje/zgloszenia/" role="button" class="btn btn-block btn-info" ><b>Zobacz Twoje zgłoszenia</b></a>
+    </div>
+{% endblock %}

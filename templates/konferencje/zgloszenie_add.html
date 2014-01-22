@@ -1,0 +1,39 @@
+{% extends "biurkon/main_base.html" %}
+{% load bootstrap3 %}
+
+{% block title %}Dodawanie zgłoszenia{% endblock %}
+
+
+{% block extrastyle %}
+<style>
+   div:nth-of-type(4){
+	display:none;}
+#formularz{
+
+    width: 40%;
+    margin: 0 auto;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <h3><small>wysyłasz zgłoszenie na konferencję:</small> {{ konferencja.tytul }}</h3>
+
+    <form role="form" enctype="multipart/form-data" method="post" id="formularz">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit='Wyślij' reset="Czyść" %}{% endbuttons %}
+    </form>
+
+
+
+
+{% endblock %}
+
+
+{% comment %}
+
+
+{% endcomment %}

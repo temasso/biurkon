@@ -1,0 +1,68 @@
+{% extends "biurkon/main_base.html" %}
+{% load static %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'konferencje/css/print.css' %}" media="print"/>
+{% endblock %}
+
+{% block title %}
+    {{ sesja.temat }}
+{%  endblock %}
+
+{% block content %}
+
+    <style>
+    #obszar{
+        margin-top:60px;
+        -moz-box-shadow: 0 0 5px 5px #888;
+        -webkit-box-shadow: 0 0 5px 5px#888;
+        box-shadow: 0 0 5px 5px #888;
+        background-color:white;
+        padding:20px;
+        border-radius:2px;
+    }
+
+
+    </style>
+
+<div id="obszar" class="page" style="">
+
+    <h1 id="konf">{{ sesja.konferencja }}</h1>
+    <h3><small>sesja:</small><i>&nbsp{{ sesja.temat }}</i></h3>
+    <p><small>miejsce:</small> &nbsp{{ sesja.lokalizacja }}</p>
+    <p><small>start:</small> &nbsp{{ sesja.start }}</p>
+    <p><small>koniec:</small> &nbsp{{ sesja.koniec_sesji }}</p>
+
+    {% if konferencja.konferencja_nadchodzaca %}<p class="text-warning">Uwaga! Do dnia konferencji program sesji może ulec zmianie!</p>{% endif %}
+    {% if punkty %}
+        <table class="table">
+        <tr>
+            <th>#</th>
+            <th>prelegent</th>
+            <th>temat</th>
+        </tr>
+    {% for punkt in punkty %}
+    <br>
+
+    <tr>
+    <td>{{forloop.counter}}</td><td>{{ punkt.tytul_naukowy }}&nbsp{{ punkt.imie }}&nbsp{{ punkt.nazwisko }}</td> <td>{{ punkt.tytul_wystapienia }}</td>
+    </tr>
+
+
+    {% endfor %}
+       </table>
+    {% else %}
+        <h5 class="text-warning" style="margin-top:40px;">Przykro nam! Brak punktów programu!</h5>
+    {% endif %}
+
+    </div>
+    </br>
+    <a id="printlink" href="javascript:window.print()"><img src="{% static 'konferencje/img/printmin.png' %}" role="button" class="btn btn-default" alt="print this page" id="print-button" /></a>
+
+
+{% endblock %}
+    
+   

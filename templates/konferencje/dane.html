@@ -1,0 +1,49 @@
+{% extends "biurkon/main_base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% bootstrap_messages %}
+
+{% block masthead %}
+<h2>Uzupełnij proszę swoje dane</h2>
+{% endblock %}
+
+{% block extrastyle %}
+<style>
+#formularz{
+    width: 25%;
+    margin: 0 auto;
+}
+</style>
+{%  endblock %}
+{% block content %}
+
+    <form role="form" method="post" id="formularz">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit='Zapisz' reset="Usuń" %}{% endbuttons %}
+
+    </form>
+
+
+{% endblock %}
+
+{% comment %}
+<div id="rejestracja">
+<form method="post" action=".">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+       	 {{ field.label_tag }}
+        {{ field.help_text}}
+        {{ field }}
+    </div>
+    {% endfor %}
+    <input type="submit" value="Zapisz">
+</form>
+</div>
+{% endcomment %}

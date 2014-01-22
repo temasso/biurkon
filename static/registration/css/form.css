@@ -1,0 +1,127 @@
+#rejestracja{
+    font-family: 'Arbutus Slab', sans-serif;
+    position: absolute;
+    height: 250px;
+    width: 350px;
+    margin: -100px 0 0 -200px;
+    top: 55%;
+    left: 55%;
+    border:1px dotted;
+    border-color:gray;
+    border-radius:10px/100px;
+    box-shadow: 0 0 20px #787878;
+    
+   background-color: #fff; 
+	background-image: 
+	linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+	linear-gradient(#eee .1em, transparent .1em);
+	background-size: 100% 1.2em;
+    
+        }
+        
+div:nth-of-type(4){
+	display:none;
+}
+        
+input {
+    border: 1px solid #006;
+    background: #ffc;
+    border-radius:5px/10%;
+}
+input:hover {
+    border: 1px solid #f00;
+    background: #ff6;
+}
+.button {
+    border: none;
+    background: url('/forms/up.png') no-repeat top left;
+    padding: 2px 8px;
+}
+.button:hover {
+    border: none;
+    background: url('/forms/down.png') no-repeat top left;
+    padding: 2px 8px;
+}
+label {
+    display: block;
+    width: 150px;
+    float: left;
+    margin-right: 6px;
+    
+    text-align: right;
+}
+br { clear: left; }
+
+form{
+	
+	padding:25px;
+}
+.fieldWrapper{
+	
+	margin-bottom: 3px;
+	border-radius:10px;
+}
+
+form div[name="your_name"]{
+	
+	display:none;
+}
+
+#juz{
+	
+	margin-top:150px;
+}
+input[type=submit]{background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52) );
+	background:-moz-linear-gradient( center top, #b8e356 5%, #a5cc52 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52');
+	background-color:#b8e356;
+	-webkit-border-top-left-radius:20px;
+	-moz-border-radius-topleft:20px;
+	border-top-left-radius:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-topright:20px;
+	border-top-right-radius:20px;
+	-webkit-border-bottom-right-radius:20px;
+	-moz-border-radius-bottomright:20px;
+	border-bottom-right-radius:20px;
+	-webkit-border-bottom-left-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	border-bottom-left-radius:20px;
+	text-indent:0px;
+	border:3px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	font-style:normal;
+	height:44px;
+	line-height:44px;
+	width:101px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:0px 0px 19px #86ae47;
+	float:right;
+	margin-top:20px;
+}
+
+input[type=submit]:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a5cc52), color-stop(1, #b8e356) );
+	background:-moz-linear-gradient( center top, #a5cc52 5%, #b8e356 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5cc52', endColorstr='#b8e356');
+	background-color:#a5cc52;
+}input[type=submit]:active {
+	position:relative;
+	top:1px;
+}
+
+#remember{
+	
+	margin-top:20px;
+	font-size:70%;
+	margin-left:115px;
+
+}
+
+
+/* This button was generated using CSSButtonGenerator.com */

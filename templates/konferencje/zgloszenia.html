@@ -1,0 +1,33 @@
+{% extends "biurkon/main_base.html" %}
+
+
+{% block title %}Twoje zgłoszenia{% endblock %}
+
+
+{% block content %}
+
+
+
+  {% if zgloszenia %}
+      <table class="table table-hover" style="margin-top:140px;">
+        <th>Konferencja</th>
+        <th>Tytuł wystąpienia</th>
+        <th>Treść wystąpienia</th>
+        <th>Data zgłoszenia</th>
+        <th>Status</th>
+        {% for zgloszenie in zgloszenia %}
+            <tr>
+               <td> <a href="/konferencja/{{ zgloszenie.konferencja_id }}">{{ zgloszenie.konferencja }}</a> </td>
+                <td> {{ zgloszenie.tytul_wystapienia }}</td>
+                <td><a href="/media/{{ zgloszenie.tresc_wystapienia }}">otwórz</a></td>
+                <td>{{ zgloszenie.data_zgloszenia }}</td>
+                <td {% if zgloszenie.status == 0 %} class="danger" {% endif %} {% if zgloszenie.status == 2 %}class="success" {% endif %}> {{ zgloszenie.status_zgloszenia }} </td>
+            </tr>
+        {% endfor %}
+
+       </table>
+  {% else %}
+        <h2 class="text-danger" style="margin-top:70px;">Nie wysłałeś jeszcze zgłoszeń.</h2>
+        <h4><small>{{ warning }}</small></h4>
+ {% endif %}
+ {% endblock %}

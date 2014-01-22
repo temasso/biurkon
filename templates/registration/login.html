@@ -1,0 +1,58 @@
+{% extends "registration/registration_base.html" %}
+{% load url from future %}
+{% load i18n %}
+{% block title %}Logowanie{% endblock %}
+{% load bootstrap3 %}
+
+{% bootstrap_messages %}
+
+{% block extrastyle %}
+<style>
+#formularz{
+    width: 25%;
+    margin: 0 auto;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <form role="form" method="post" id="formularz">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit='Zaloguj' reset="Usuń" %}{% endbuttons %}
+    <div id="remember" class="fieldWrapper">
+        <a href="{% url "auth_password_reset" %}">Zapomniałeś hasła?</a></br>
+        <a href="{% url "registration_register" %}">Załóż konto</a>
+    </div>
+    </form>
+
+{% endblock %}
+
+
+{% comment %}
+<div id="rejestracja">
+<form method="post" action="." class="form-signin" role="form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.username.errors }}
+        <label for="id_username">{% trans "Email" %}</label>
+        {{ form.username }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.password.errors }}
+        {{ form.password.label_tag }}
+        {{ form.password }}
+    </div>
+    <div id="remember" class="fieldWrapper">
+        <a href="{% url "auth_password_reset" %}">Zapomniałeś hasła?</a></br>
+        <a href="{% url "registration_register" %}">Załóż konto</a>
+    </div>
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="submit" value="Zaloguj" class="btn btn-primary">
+
+</form>
+</div>
+
+{% endcomment %}

@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load url from future %}
+
+Witaj! 
+{% blocktrans with site.name as site_name %}
+Zarejestrowałeś konto w serwisie Biurkon: {{ site_name }}.
+
+Jeżeli nie byłeś to Ty, zignoruj tę wiadomość.
+
+Aby aktywować konto, kliknij na poniższy link w ciągu {{ expiration_days }} dni.
+{% endblocktrans %}
+
+http://{{ site.domain }}{% url "registration_activate" activation_key=activation_key %}
+
+Pozdrawiamy,
+{{ site.name }}
