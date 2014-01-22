@@ -231,7 +231,7 @@ class Zgloszenie(models.Model):
     lub http://stackoverflow.com/questions/1355150/django-when-saving-how-can-you-check-if-a-field-has-changed?lq=1
     """
     prelegent = models.ForeignKey(Prelegent)
-    konferencja = models.OneToOneField(Konferencja, primary_key=False)
+    konferencja = models.ForeignKey(Konferencja, primary_key=False)
     tytul_wystapienia = models.CharField(verbose_name="Tytuł wystąpienia",
                                          max_length=100,
     )

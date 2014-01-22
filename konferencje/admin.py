@@ -17,9 +17,21 @@ class SesjaModForm(forms.ModelForm):
         model = Sesja
 
     def clean_start(self):
+        
+# uscislic
+#
+        try:
+            kid = self.cleaned_data['konferencja']
+        except:
+            raise forms.ValidationError("Najpierw utwórz i zapisz konferencję, następnie dodaj nową sesję. FIRST")
 
-        kid = self.cleaned_data['konferencja']
-        konferencja = Konferencja.objects.get(pk=kid.id)
+        try:
+            konferencja = Konferencja.objects.get(pk=kid.id)
+        except:
+            raise forms.ValidationError("Najpierw utwórz i zapisz konferencję, następnie dodaj nową sesję")
+
+#
+##
         start_konfa = konferencja.inauguracja
         start_sesja = self.cleaned_data['start']
 
