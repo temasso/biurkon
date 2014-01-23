@@ -17,21 +17,19 @@ class SesjaModForm(forms.ModelForm):
         model = Sesja
 
     def clean_start(self):
-        
-# uscislic
-#
+        print("WAWA")
         try:
             kid = self.cleaned_data['konferencja']
         except:
             raise forms.ValidationError("Najpierw utwórz i zapisz konferencję, następnie dodaj nową sesję. FIRST")
 
+        print("pzed 2 tra")
         try:
             konferencja = Konferencja.objects.get(pk=kid.id)
         except:
             raise forms.ValidationError("Najpierw utwórz i zapisz konferencję, następnie dodaj nową sesję")
 
-#
-##
+
         start_konfa = konferencja.inauguracja
         start_sesja = self.cleaned_data['start']
 
@@ -207,26 +205,27 @@ class PrelegentInline(admin.TabularInline):
     extra = 0
 
 
-class UserAdmin(admin.ModelAdmin):
-    inlines = [PrelegentInline,]
 
-    list_display = ('username',
-                    'first_name',
-                    'last_name',
-                    'email',
-                    'is_active',
-                    'date_joined',
-                    'last_login',
+
+class PrelegentAdmin(admin.ModelAdmin):
+
+    list_display = ('tytul_naukowy',
+                    'imie',
+                    'nazwisko',
+                   'mail',
+                    'nr_telefonu',
+                    'jednostka_naukowa',
+                 #   'user.date_joined',
+                 #   'user.last_login',
+                 #   'user.is_active',
+
     )
 
-    list_filter = ('is_active', 'date_joined','last_login')
-    search_fields = ['last_name']
+    #list_filter = ('user.is_active', 'user.date_joined','user.last_login')
+    #search_fields = ['last_name']
 
 
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
-
-
+admin.site.register(Prelegent,PrelegentAdmin)
 
 
 

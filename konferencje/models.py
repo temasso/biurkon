@@ -140,6 +140,11 @@ class Prelegent(models.Model):
         ordering = ['user']
         verbose_name_plural = "prelegenci"
 
+    def mail(self):
+        uzy = User.objects.get(pk=self.user.pk)
+        return uzy.email
+
+
 
 class Sesja(models.Model):
     """
