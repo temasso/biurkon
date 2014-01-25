@@ -51,7 +51,8 @@
         	(<a href="{% url 'auth_logout' %}">Wyloguj</a> |
         	<a href="{% url 'auth_password_change' %}">Zmień hasło</a>) </small>
         	{% else %}
-       		 <small><a href="{% url 'auth_login' %}">Zaloguj lub zarejestruj się!</a></small>
+       		 <medium><a href="{% url 'auth_login' %}">Zaloguj się </a><span style="font-size:x-small;color:darkgray;">  lub</span>
+             <a href="{% url 'registration_register' %}">rejestruj</a></medium>
         	{% endif %}
         </div>
         

@@ -36,7 +36,7 @@ background-image:url('../img/tlo.png');
 float:left;	
 margin-top: 1px;
 font-family: 'Abril Fatface', sans-serif;
-margin-left:15px;   
+margin-left:15px;
 }
        
 #nawigacja{
@@ -46,10 +46,11 @@ float:left;
 }
 
 #menu li{
+    font-weight:bold;
 float: left;
 display: inline;
 list-style-type: none;
-background-color:#dddddd;
+background-color:rgb(221, 221, 221);
 text-align: center;
 padding:1px 3px; 
 margin:0 .04em;
@@ -69,7 +70,6 @@ transition-duration: 1s;
 
 #menu li:hover{	
 	background-color:#D0D0D0;
-	font-weight:bold;
 	transition-property: background-color;
 	transition-duration: 1s;
 }
